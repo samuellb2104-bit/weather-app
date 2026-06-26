@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Weather Portfolio App</title>
+        <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="">
+    </head>
+    <body>
+        <main class="app-shell">
+            <section class="hero-card">
+                <div class="eyebrow">Weather Dashboard</div>
+                <h1>Precise Weather Data</h1>
+                <p class="hero-copy">
+                    Search by city name or zip code to get the latest weather information, including temperature, wind speed, humidity, and a map of the location.
+                </p>
+
+                <form id="searchForm" class="search-card" autocomplete="off">
+                    <label class="sr-only" for="searchInput">City or zip code</label>
+                    <div class="search-input-wrap">
+                        <input
+                            class="search-input"
+                            type="text"
+                            placeholder="City name or zip code"
+                            id="searchInput"
+                        >
+                        <div id="citySuggestions" class="suggestions-panel" aria-label="City suggestions"></div>
+                    </div>
+                    <button class="search-button" id="searchBtn" type="submit">Search</button>
+                </form>
+
+                <div id="statusMessage" class="status-message" aria-live="polite"></div>
+            </section>
+
+            <section class="dashboard-grid" aria-live="polite">
+                <article class="weather-card weather-summary">
+                    <div class="card-label">Current weather</div>
+                    <h2 id="cityHeader" class="city-title">Search for a city</h2>
+                    <div id="weatherDescription" class="weather-overview">
+                        Use the search bar above to load the latest weather.
+                    </div>
+
+                    <div id="weatherMain" class="weather-main">
+                        <div class="temperature-block">
+                            <div id="temperature" class="temperature">--&deg;C</div>
+                            <div class="temperature-caption">Temperature</div>
+                        </div>
+                        <div class="icon-block is-hidden" id="iconBlock">
+                            <img id="documentIconImg" alt="Weather icon">
+                        </div>
+                    </div>
+                </article>
+
+                <div class="sidebar-stack">
+                    <aside class="weather-card details-card">
+                        <div class="card-label">Details</div>
+                        <div class="detail-list">
+                            <div class="detail-item">
+                                <span class="detail-name">Conditions</span>
+                                <span id="weatherDescriptionHeader" class="detail-value">--</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-name">Wind</span>
+                                <span id="windSpeed" class="detail-value">--</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-name">Humidity</span>
+                                <span id="humidity" class="detail-value">--</span>
+                            </div>
+                        </div>
+                    </aside>
+
+                    <aside class="weather-card map-card">
+                        <div class="card-label">Location map</div>
+                        <div class="map-meta" id="mapMeta">Search a city to center the map.</div>
+                        <div id="cityMap" class="city-map" aria-label="Map of the searched city"></div>
+                    </aside>
+                </div>
+            </section>
+        </main>
+        <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
+        <script src="script.js"></script>
+    </body>
+</html>
