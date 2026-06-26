@@ -1,5 +1,3 @@
-let appId = '8202630b973a984040b2f1ef0a8feaa2';
-let units = 'metric';
 let searchMethod;
 
 const searchInput = document.getElementById('searchInput');
@@ -61,7 +59,11 @@ function searchWeather(searchTerm) {
     setStatus('Loading weather data...', 'loading');
     document.body.classList.add('is-loading');
     getSearchMethod(query);
-    fetch('https://api.openweathermap.org/data/2.5/weather?' + searchMethod + '=' + encodeURIComponent(query) + '&APPID=' + appId + '&units=' + units)
+    const endpoint = searchMethod === 'zip'
+        ? `/api/weather?zip=${encodeURIComponent(query)}`
+        : `/api/weather?q=${encodeURIComponent(query)}`;
+
+    fetch(endpoint)
         .then(result => result.json())
         .then(result => {
             if (result.cod && Number(result.cod) !== 200) {
