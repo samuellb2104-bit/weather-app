@@ -1,48 +1,129 @@
-# Weather App
+# Weather Dashboard
 
-Aplicación web estática para consultar el clima por ciudad o código postal, con mapa, sugerencias de ciudades y fondo dinámico según las condiciones.
+A polished weather dashboard that lets users search by city name or ZIP code and instantly view current conditions, temperature, wind speed, humidity, and an interactive map centered on the selected location.
 
-## Ejecutar en local
+## Overview
 
-Solo necesitas abrir `index.html` en el navegador o servir la carpeta con un servidor estático.
+This project was built as a portfolio-ready frontend application focused on usability, clarity, and deployment hygiene. The interface combines live weather data, smart city suggestions, and a dynamic visual experience that changes based on the current weather conditions.
 
-## Publicar en GitHub
+The goal of the project was to create a product that feels practical and presentable for real-world use while also demonstrating strong frontend fundamentals, API integration, and safe deployment practices.
 
-1. Crea un repositorio vacío en GitHub.
-2. En esta carpeta ejecuta:
+## My Role
+
+I designed and developed the project end to end, including:
+
+- UI structure and visual design
+- Weather API integration
+- Interactive map implementation
+- Responsive layout behavior
+- Deployment setup for Vercel
+- Secure handling of the API key through serverless infrastructure
+
+## Development Process
+
+The project was developed in a few clear stages:
+
+1. Started with the base layout and defined the overall user flow: search, results, and map visualization.
+2. Integrated OpenWeather to retrieve live weather data by city name or ZIP code.
+3. Added a Leaflet map to reinforce the location-based experience.
+4. Implemented suggestions for popular cities to improve usability and reduce friction during search.
+5. Refined the visual design with layered backgrounds, glassmorphism-style cards, and responsive spacing.
+6. Moved the API request into a Vercel Serverless Function so the OpenWeather key would not be exposed in the frontend.
+7. Prepared the app for deployment and portfolio presentation.
+
+## Key Features
+
+- Search weather by city name or ZIP code
+- Real-time weather data from OpenWeather
+- Interactive map centered on the selected city
+- Auto-suggestions for popular locations
+- Dynamic background changes based on weather conditions
+- Clear status and error feedback for the user
+- Responsive layout for desktop and mobile
+- Secure API handling through a serverless function
+
+## Tech Stack
+
+- HTML
+- CSS
+- JavaScript
+- OpenWeather API
+- Leaflet.js
+- Vercel Serverless Functions
+- Assitance Codex
+
+## Architecture
+
+The app follows a simple and secure flow:
+
+- The frontend sends the search term to `/api/weather`
+- The serverless function reads `OPENWEATHER_API_KEY` from environment variables
+- The function requests data from OpenWeather
+- The response is returned to the frontend and rendered in the UI
+
+This approach keeps the API key out of the browser and makes the project safer for production-style deployment.
+
+## What I Focused On
+
+- Building a clean and intuitive user experience
+- Keeping the interface lightweight and responsive
+- Making the project easy to present in a portfolio
+- Protecting sensitive credentials
+- Ensuring the codebase is simple to maintain and extend
+
+## Getting Started
+
+### 1. Clone the repository
 
 ```bash
-git add .
-git commit -m "Initial commit"
-git branch -M main
-git remote add origin https://github.com/TU_USUARIO/TU_REPO.git
-git push -u origin main
+git clone https://github.com/YOUR_USERNAME/YOUR_REPOSITORY.git
+cd weather_app
 ```
 
-## Desplegar en Vercel
+### 2. Add the environment variable in Vercel
 
-1. Entra a Vercel y conecta el repositorio de GitHub.
-2. Importa el proyecto.
-3. Agrega una variable de entorno llamada `OPENWEATHER_API_KEY` con tu key nueva.
-4. Como es una web estática con una función serverless, Vercel puede desplegarlo sin build command.
-5. Si te lo pide, usa:
-   - Build Command: vacío
-   - Output Directory: `.` o deja el valor por defecto para sitio estático
+Create an environment variable named:
 
-## Cómo funciona ahora
+```bash
+OPENWEATHER_API_KEY
+```
 
-- El navegador ya no llama a OpenWeather directamente.
-- `script.js` llama a `/api/weather`.
-- `api/weather.js` toma la key desde `process.env.OPENWEATHER_API_KEY`.
-- Vercel inyecta esa variable solo en el servidor, no en el frontend.
+Use your OpenWeather API key as the value.
 
-## Cambios clave
+### 3. Deploy
 
-1. Antes, la key estaba escrita en `script.js`.
-2. Ahora, la key vive en la variable de entorno de Vercel.
-3. El frontend solo conoce la ruta `/api/weather`.
-4. La función serverless hace la petición real a OpenWeather.
+This project is designed to run as a static frontend with a serverless backend function in Vercel. No build step is required.
 
-## Nota importante
+## Local Preview
 
-La clave de OpenWeather ya no debe estar en `script.js`. Ahora debe vivir como variable de entorno en Vercel para no exponerla en el navegador.
+Because the project uses a serverless function, it should be tested through a local server instead of opening `index.html` directly with `file://`.
+
+You can use any simple local server, for example:
+
+```bash
+python -m http.server 3000
+```
+
+Then open:
+
+```bash
+http://localhost:3000
+```
+
+## Notes
+
+- The OpenWeather API key should never be placed directly in the frontend code.
+- The serverless function handles the external request securely.
+- The project was intentionally kept simple, readable, and portfolio-friendly.
+
+## Future Improvements
+
+- Add weather forecast views for multiple days
+- Store favorite cities locally
+- Improve accessibility states and keyboard navigation
+- Add temperature unit toggles
+- Expand the city suggestion system with a richer dataset
+
+## License
+
+This project is part of my personal portfolio and can be used as a reference for learning and presentation purposes.

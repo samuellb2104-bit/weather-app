@@ -35,7 +35,8 @@ const cityCatalog = [
     { city: 'Tokyo', country: 'Japan' },
     { city: 'Seoul', country: 'South Korea' },
     { city: 'Sydney', country: 'Australia' },
-    { city: 'Melbourne', country: 'Australia' }
+    { city: 'Melbourne', country: 'Australia' },
+    { city: 'Cartagena', country: 'Colombia' }
 ];
 
 let suggestionTimer;
